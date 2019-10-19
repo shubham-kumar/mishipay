@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Sign in {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+        <button class="btn btn-primary mb-2">
+            <a class="text-white" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+        </button>
+        <button class="btn btn-info mb-2">
+            <a class="text-white" href="{% url 'social:begin' 'linkedin-oauth2' %}">Login with LinkedIn</a>
+        </button>
+    </div>
+</div>
+<form method="POST" action="/login/">
+    {% csrf_token %}
+    {%if error%}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+    {%endif%}
+
+    <div class="row">
+        <div class="col-md-8">
+            <label>username</label>: <input type="text" name="uname" class="form-group">
+        </div>
+        <div class="col-md-8">
+            <label>password</label>: <input type="password" name="pwd" class="form-group">
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success" value="Login">
+            <a href="/signup">Sign Up</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock %}
+{% block content %}
+<a href="/">Home</a>
+<form method="POST" action="/signup/">
+    {% csrf_token %}
+    {%if error%}
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+    {%endif%}
+    {%if success%}
+    <div class="alert alert-success" role="alert">
+        {{success}}
+    </div>
+    {%endif%}
+
+    <div class="row">
+        <div class="col-md-8">
+            <label>username</label>: <input type="text" name="uname" class="form-group">
+        </div>
+        <div class="col-md-8">
+            <label>password</label>: <input type="password" name="pwd" class="form-group">
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success" value="Signup">
+        </div>
+    </div>
+</form>
+{% endblock %}
